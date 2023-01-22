@@ -6,5 +6,5 @@
 int main(){
   
   int i =0;
-  return NULL;
+  std::cout << "Works\n";
 }
