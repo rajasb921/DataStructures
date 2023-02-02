@@ -4,9 +4,11 @@
 
 
 int main(){
-  
-  int i =0;
-  std::cout << "Works\n";
-  innt p = 9;
-  std::string hello;
+
+	int i =0;
+	int x = 1;
+	int y = 2;
+	std::cout << "Finally got Git to work!" << std::endl;
+
+	std::cout << "Works\n";
 }
