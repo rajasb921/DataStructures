@@ -1,4 +1,0 @@
-This is a text file in an experimental branch
-
-This is an edit to an existing file
-
