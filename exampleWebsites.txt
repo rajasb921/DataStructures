@@ -1,0 +1,6 @@
+geeksforgeeks https://www.geeksforgeeks.org/c-plus-plus/?ref=shm Guide
+w3schools https://www.w3schools.com/cpp/ Guide
+cplusplus https://cplusplus.com/forum/ Forum
+edabit https://edabit.com/challenges/cpp Practice
+hackerrank https://www.hackerrank.com/domains/cpp Practice
+devdocs https://devdocs.io/cpp/ Documentation
