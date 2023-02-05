@@ -76,12 +76,15 @@ public:
     //accounts for empty list
     void removeFront(){                              // Remove the first website
         if (!isEmpty()){
+            remove(header->next);
+            /*
             Website* temp = new Website;
             temp->next = header->next;
             header->next = header->next->next;
             delete temp->next;
             delete temp;
-            size--;
+            size--; // not needed in removeFront if accounted for in remove()
+            */
         }
         else {
             std::cout << "List is already empty!" << std::endl;
@@ -90,13 +93,17 @@ public:
 
     void removeBack(){                               // Remove the last website
         if (!isEmpty()){
+            remove(trailer->back);
+            /*
             //Website* temp = new Website;
             Website* temp = trailer->back;
             //temp->back = trailer->back;
             trailer->back = trailer->back->back;
             //delete temp->back;
             delete temp;
-            size--;
+            size--; // not needed in removeFront if accounted for in remove()
+
+            */
         }
         else {
             std::cout << "List is already empty!" << std::endl;
@@ -136,7 +143,8 @@ public:
         std::cout.width(20); std::cout << std::left << "Name";
         std::cout.width(80); std::cout << std::left << "URL";
         std::cout.width(20); std::cout << std::left << "Resource type";
-        std::cout << "\n===========================================================================================================================\n";
+        std::cout.width(120); 
+        std::cout << "\n=============================================================================================================================\n";
         while (curWebsite != trailer){
             std::cout.width(20); std::cout << std::left << curWebsite->name;
             std::cout.width(80); std::cout << std::left << curWebsite->url;
