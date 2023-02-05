@@ -11,7 +11,7 @@ class Website{
 private:
     std::string name;                         // Name of the website
     std::string url;                          // URL of the website
-    std::PPstring type;                      // Type of resource provided by the website
+    std::string type;                      // Type of resource provided by the website
     Website *next;                            // Next website in the list
     Website *back;                            // Previous website in the list
 
@@ -60,7 +60,7 @@ public:
     }
 
     void remove(Website *toRemove){                  // Remove a given website from the list
-        if (size != 0){
+        if (!isEmpty()){
             toRemove->back->next = toRemove->next;
             toRemove->next->back = toRemove->back;
             delete toRemove;
@@ -83,14 +83,28 @@ public:
             delete temp;
             size--;
         }
+        else {
+            std::cout << "List is already empty!" << std::endl;
+        }
     }
 
     void removeBack(){                               // Remove the last website
-        remove(trailer->back);
+        if (!isEmpty()){
+            //Website* temp = new Website;
+            Website* temp = trailer->back;
+            //temp->back = trailer->back;
+            trailer->back = trailer->back->back;
+            //delete temp->back;
+            delete temp;
+            size--;
+        }
+        else {
+            std::cout << "List is already empty!" << std::endl;
+        }
         return;
     }
 
-    void add(Website *beforeMe, const std::string new_name, const std::string new_url, std::string new_type){    // General add function
+    void addBefore(Website *beforeMe, const std::string new_name, const std::string new_url, std::string new_type){    // General add function
 
         // Create new website
         Website *newWebsite = new Website();
@@ -103,23 +117,20 @@ public:
         newWebsite->back = beforeMe->back;
         beforeMe->back = newWebsite;
         newWebsite->next = beforeMe;
-        size++; /* I *think* size needs to be increased at every add() call,
+        size++; /* I *think* size needs to be increased at every addBefore() call,
             but I could be wrong */
-
-        return;
     }
 
     void addFront(const std::string new_name, const std::string new_url, std::string new_type){   // Adding to the front of the list
-        add(header->next,new_name,new_url,new_type);
-        return;
+        addBefore(header->next,new_name,new_url,new_type);
     }
 
     void addBack(const std::string new_name, const std::string new_url, std::string new_type){   // Adding to the end of the list
-        add(trailer,new_name,new_url,new_type);
+        addBefore(trailer,new_name,new_url,new_type);
     }
 
     void printList(){             // Function to print entire list
-        Website *curWebsite = header->next;
+        Website* curWebsite = header->next;
         std::cout << "\n";
         std::cout << "PRINTING LIST... \n\n";
         std::cout.width(20); std::cout << std::left << "Name";
