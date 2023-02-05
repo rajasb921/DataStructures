@@ -51,6 +51,8 @@ public:
         delete header;
         delete trailer;
     }
+    
+    int returnSize(){ return size; }
 
     int isEmpty(){
         if (header->next == trailer && trailer->back == header){
@@ -145,7 +147,10 @@ public:
         std::cout.width(20); std::cout << std::left << "Resource type";
         std::cout.width(120); 
         std::cout << "\n=============================================================================================================================\n";
+        int i = 0;
         while (curWebsite != trailer){
+            std::cout << i << std::endl;
+            i++;
             std::cout.width(20); std::cout << std::left << curWebsite->name;
             std::cout.width(80); std::cout << std::left << curWebsite->url;
             std::cout.width(20); std::cout << std::left << curWebsite->type;
@@ -158,22 +163,24 @@ public:
 
 };
 
-LinkedList readFile(std::string filename){
+LinkedList readFile(std::string filename){ // this, or one of the add functions is causing a duplicate error. see below
     std::ifstream infile;
     infile.open(filename);
+
     LinkedList list;
     std::string name;
     std::string url;
     std::string type;
 
-    std::string str;
-    if (infile){
+    int i = 0;
+    if (infile){ // its either here or in the add function(s) that there's a problem
+        // that causes a duplicate of the last item in the file to be added to the list
         while (!infile.eof()){
             infile >> name;
             infile >> url;
             infile >> type;
-            list.addFront(name,url,type);
-        }
+            list.addBack(name,url,type);
+        }     
     }
 
     infile.close();
@@ -183,8 +190,10 @@ LinkedList readFile(std::string filename){
 // Main function
 int main(){
 
-    LinkedList myLinkedList =readFile("exampleWebsites.txt");
+    LinkedList myLinkedList = readFile("exampleWebsites.txt");
     myLinkedList.printList();
+    std::cout << "Count of myLinkedList: " << myLinkedList.returnSize();
+    std::cout << std::endl;
 
     return EXIT_SUCCESS;
 }
