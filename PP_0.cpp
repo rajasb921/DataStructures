@@ -57,6 +57,7 @@ class LinkedList{
             trailer->back = header;
         }
 
+
         ~LinkedList(){                      // Linked List destructor
             while(size != 0){
                 removeFront();
@@ -126,58 +127,16 @@ class LinkedList{
                 curNode = curNode->next;
             }
 
-<<<<<<< HEAD
-=======
-    void addBack(const std::string new_name, const std::string new_url, std::string new_type){   // Adding to the end of the list
-        addBefore(trailer,new_name,new_url,new_type);
-    }
-
-    void printList(){             // Function to print entire list
-        Website* curWebsite = header->next;
-        std::cout << "\n";
-        std::cout << "PRINTING LIST... \n\n";
-        std::cout.width(20); std::cout << std::left << "Name";
-        std::cout.width(80); std::cout << std::left << "URL";
-        std::cout.width(20); std::cout << std::left << "Resource type";
-        std::cout.width(120); 
-        std::cout << "\n=============================================================================================================================\n";
-        while (curWebsite != trailer){
-            std::cout.width(20); std::cout << std::left << curWebsite->name;
-            std::cout.width(80); std::cout << std::left << curWebsite->url;
-            std::cout.width(20); std::cout << std::left << curWebsite->type;
->>>>>>> parent of c01a4fd (testing for the duplicate problem (UNRESOLVED))
             std::cout << "\n";
         }
         
 };
 
-LinkedList readFile(std::string filename){
-    std::ifstream infile;
-    infile.open(filename);
-    LinkedList list;
-    std::string name;
-    std::string url;
-    std::string type;
-
-    std::string str;
-    if (infile){
-        while (!infile.eof()){
-            infile >> name;
-            infile >> url;
-            infile >> type;
-            list.addFront(name,url,type);
-        }
-    }
-
-    infile.close();
-    return list;
-}
 
 // Main function
 int main(){
-
-    LinkedList myLinkedList =readFile("exampleWebsites.txt");
-    myLinkedList.printList();
+    // Testing all functions of the list
+    
     /*
     Website site = Website("geeksforgeeks","https://www.geeksforgeeks.org/c-plus-plus/?ref=shm","Guide");
     Node<Website> node = Node<Website>(site);
@@ -194,5 +153,6 @@ int main(){
     list.removeBack();
     list.printList();
     */
+
     return EXIT_SUCCESS;
 }
